@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="Soon - Mental Wellness Platform for All">
+    <meta name="theme-color" content="#2DCE89">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Soon">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="./manifest.json">
+    
+    <!-- PWA Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="./icons/icon-512x512.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="./icons/icon-192x192.png">
+    
+    <title>Soon - Mental Wellness Platform</title>
+    <style>
+        /* Complete CSS for Soon Mental Wellness Platform */
+        :root {
+            --primary-color: #2DCE89;
+            --secondary-color: #6366F1;
+            --accent-orange: #F59E0B;
+            --accent-purple: #8B5CF6;
+            --background-light: #F8FAFC;
+            --background-dark: #1E293B;
+            --text-dark: #1E293B;
+            --text-light: #64748B;
+            --white: #FFFFFF;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+            --border-radius-button: 8px;
+            --border-radius-card: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--background-light) 0%, #E2E8F0 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navigation {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border-top: 1px solid #E2E8F0;
+            z-index: 1000;
+            padding: 0;
+            box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-items {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px 16px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-radius: var(--border-radius-button);
+            transition: var(--transition);
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+
+        .nav-item.active {
+            color: var(--primary-color);
+            background: rgba(45, 206, 137, 0.1);
+        }
+
+        .nav-item:hover:not(.active) {
+            color: var(--secondary-color);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .nav-item i {
+            font-size: 1.4rem;
+            margin-bottom: 4px;
+        }
+
+        /* Main Container */
+        .main-container {
+            padding-bottom: 80px;
+            min-height: 100vh;
+        }
+
+        .page {
+            display: none;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            border-radius: var(--border-radius-card);
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h3 {
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h3 i {
+            color: var(--primary-color);
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: var(--border-radius-button);
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), #20B377);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #20B377, var(--primary-color));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(45, 206, 137, 0.3);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--secondary-color), #5048E5);
+            color: var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #5048E5, var(--secondary-color));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-accent {
+            background: linear-gradient(135deg, var(--accent-orange), #D97706);
+            color: var(--white);
+        }
+
+        .btn-accent:hover {
+            background: linear-gradient(135deg, #D97706, var(--accent-orange));
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(245, 158, 11, 0.3);
+        }
+
+        /* Mood Tracker */
+        .mood-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .mood-option {
+            padding: 20px;
+            border: 2px solid #E2E8F0;
+            border-radius: var(--border-radius);
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            background: var(--white);
+        }
+
+        .mood-option:hover {
+            border-color: var(--primary-color);
+            background: rgba(45, 206, 137, 0.05);
+        }
+
+        .mood-option.selected {
+            border-color: var(--primary-color);
+            background: rgba(45, 206, 137, 0.1);
+            color: var(--primary-color);
+        }
+
+        .mood-option i {
+            font-size: 2rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        /* Pet Data Form */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #E2E8F0;
+            border-radius: var(--border-radius-button);
+            font-size: 1rem;
+            transition: var(--transition);
+            background: var(--white);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(45, 206, 137, 0.1);
+        }
+
+        /* Rest Tracker */
+        .rest-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--accent-purple), #7C3AED);
+            color: var(--white);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Piano */
+        .piano-container {
+            background: var(--background-dark);
+            border-radius: var(--border-radius-card);
+            padding: 30px;
+            margin: 20px 0;
+        }
+
+        .piano {
+            display: flex;
+            justify-content: center;
+            position: relative;
+            margin: 20px 0;
+        }
+
+        .key {
+            width: 60px;
+            height: 200px;
+            background: var(--white);
+            border: 2px solid #CCC;
+            border-radius: 0 0 8px 8px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 20px;
+            cursor: pointer;
+            user-select: none;
+            transition: var(--transition);
+            margin: 0 2px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .key:hover {
+            background: #F5F5F5;
+            transform: translateY(-2px);
+        }
+
+        .key.active {
+            background: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .key.black {
+            width: 45px;
+            height: 120px;
+            background: var(--text-dark);
+            color: var(--white);
+            position: absolute;
+            margin-left: -22px;
+            z-index: 2;
+            margin-top: 0;
+        }
+
+        .key.black:nth-child(2) { left: 42px; }
+        .key.black:nth-child(5) { left: 162px; }
+        .key.black:nth-child(7) { left: 282px; }
+        .key.black:nth-child(9) { left: 402px; }
+        .key.black:nth-child(11) { left: 522px; }
+
+        /* Chat Interface */
+        .chat-container {
+            background: var(--white);
+            border-radius: var(--border-radius-card);
+            padding: 20px;
+            margin: 20px 0;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #E2E8F0;
+            border-radius: var(--border-radius);
+        }
+
+        .message {
+            margin: 10px 0;
+            padding: 12px 16px;
+            border-radius: 18px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .message.user {
+            background: linear-gradient(135deg, var(--secondary-color), #5048E5);
+            color: var(--white);
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .message.ai {
+            background: #F1F5F9;
+            color: var(--text-dark);
+            margin-right: auto;
+        }
+
+        .chat-input {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 1px solid #E2E8F0;
+            border-radius: 25px;
+            font-size: 1rem;
+        }
+
+        .chat-input button {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            background: var(--primary-color);
+            color: var(--white);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .chat-input button:hover {
+            background: #20B377;
+            transform: translateY(-1px);
+        }
+
+        /* Journal */
+        .journal-container {
+            background: var(--white);
+            border-radius: var(--border-radius-card);
+            padding: 25px;
+            margin: 20px 0;
+        }
+
+        .journal-textarea {
+            width: 100%;
+            height: 200px;
+            padding: 15px;
+            border: 1px solid #E2E8F0;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-family: inherit;
+            resize: vertical;
+            margin-bottom: 15px;
+        }
+
+        .journal-textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(45, 206, 137, 0.1);
+        }
+
+        /* Volunteer Card */
+        .volunteer-card {
+            background: linear-gradient(135deg, var(--accent-orange), var(--accent-purple));
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius-card);
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .volunteer-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .volunteer-card p {
+            margin-bottom: 15px;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .volunteer-email {
+            background: rgba(255,255,255,0.2);
+            padding: 12px 20px;
+            border-radius: var(--border-radius-button);
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        .volunteer-email i {
+            margin-right: 8px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .piano {
+                overflow-x: auto;
+            }
+            
+            .mood-grid {
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            }
+            
+            .nav-items {
+                padding: 8px 0;
+            }
+            
+            .nav-item {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
+            
+            .nav-item i {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .page.active {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Loading States */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(45, 206, 137, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .text-success { color: var(--primary-color); }
+        .text-warning { color: var(--accent-orange); }
+        .text-danger { color: #EF4444; }
+        .hidden { display: none; }
+        .visible { display: block; }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Home Page -->
+        <div id="home-page" class="page active">
+            <div class="header">
+                <h1><i class="fas fa-heart"></i> Soon</h1>
+                <p>Mental Wellness Platform for Humans and Animals - Making Psychology Accessible</p>
+            </div>
+
+            <!-- Volunteer Request Card -->
+            <div class="volunteer-card">
+                <h3><i class="fas fa-hand-holding-heart"></i> Volunteer as a Psychologist</h3>
+                <p>Join our team of mental health professionals and make a difference in people's lives</p>
+                <div class="volunteer-email">
+                    <i class="fas fa-envelope"></i> abdelkrim.kaabar@uit.ac.ma
+                </div>
+                <button class="btn btn-primary" onclick="window.location.href='mailto:abdelkrim.kaabar@uit.ac.ma?subject=Volunteer Request - Soon Platform&body=Hello,%0D%0A%0D%0AI am interested in volunteering as a psychologist for the Soon platform.%0D%0A%0D%0AName:%0D%0AQualifications:%0D%0AExperience:%0D%0A%0D%0AThank you!'">
+                    <i class="fas fa-paper-plane"></i> Send Volunteer Request
+                </button>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="card">
+                <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px;">
+                    <button class="btn btn-primary" onclick="navigateToPage('mood-page')">
+                        <i class="fas fa-smile"></i> Track Mood
+                    </button>
+                    <button class="btn btn-secondary" onclick="navigateToPage('pet-page')">
+                        <i class="fas fa-paw"></i> Pet Care
+                    </button>
+                    <button class="btn btn-accent" onclick="navigateToPage('rest-page')">
+                        <i class="fas fa-moon"></i> Rest Tracker
+                    </button>
+                    <button class="btn btn-primary" onclick="navigateToPage('piano-page')">
+                        <i class="fas fa-music"></i> Piano Therapy
+                    </button>
+                </div>
+            </div>
+
+            <!-- Therapy Sessions -->
+            <div class="card">
+                <h3><i class="fas fa-comments"></i> AI Therapy Session</h3>
+                <p>Start a conversation with our AI psychologist for personalized mental health support.</p>
+                <button class="btn btn-secondary" onclick="navigateToPage('ai-page')" style="margin-top: 15px;">
+                    <i class="fas fa-robot"></i> Start AI Chat
+                </button>
+            </div>
+
+            <!-- Journal -->
+            <div class="card">
+                <h3><i class="fas fa-book"></i> Personal Journal</h3>
+                <p>Express your thoughts and feelings in a safe, private space.</p>
+                <button class="btn btn-accent" onclick="navigateToPage('journal-page')" style="margin-top: 15px;">
+                    <i class="fas fa-pen"></i> Write Journal
+                </button>
+            </div>
+        </div>
+
+        <!-- Mood Tracking Page -->
+        <div id="mood-page" class="page">
+            <div class="header">
+                <h1><i class="fas fa-smile"></i> Mood Tracker</h1>
+                <p>How are you feeling today?</p>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-heart"></i> Select Your Mood</h3>
+                <div class="mood-grid">
+                    <div class="mood-option" data-mood="Happy" onclick="selectMood(this)">
+                        <i class="fas fa-smile"></i>
+                        <div>Happy</div>
+                    </div>
+                    <div class="mood-option" data-mood="Sad" onclick="selectMood(this)">
+                        <i class="fas fa-frown"></i>
+                        <div>Sad</div>
+                    </div>
+                    <div class="mood-option" data-mood="Anxious" onclick="selectMood(this)">
+                        <i class="fas fa-meh"></i>
+                        <div>Anxious</div>
+                    </div>
+                    <div class="mood-option" data-mood="Excited" onclick="selectMood(this)">
+                        <i class="fas fa-grin-stars"></i>
+                        <div>Excited</div>
+                    </div>
+                    <div class="mood-option" data-mood="Calm" onclick="selectMood(this)">
+                        <i class="fas fa-peace"></i>
+                        <div>Calm</div>
+                    </div>
+                    <div class="mood-option" data-mood="Stressed" onclick="selectMood(this)">
+                        <i class="fas fa-tired"></i>
+                        <div>Stressed</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-share"></i> Share with SoonPsy</h3>
+                <p>Share your mood with our AI psychologist for personalized insights and support.</p>
+                <button class="btn btn-primary" onclick="shareMoodWithSoonPsy()" id="share-mood-btn" style="margin-top: 15px;">
+                    <i class="fas fa-share-alt"></i> Share Mood with SoonPsy
+                </button>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-history"></i> Recent Moods</h3>
+                <div id="mood-history">
+                    <p style="text-align: center; color: var(--text-light);">No mood entries yet. Select a mood above to get started!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pet Care Page -->
+        <div id="pet-page" class="page">
+            <div class="header">
+                <h1><i class="fas fa-paw"></i> Pet Care</h1>
+                <p>Track your pet's well-being for holistic mental health</p>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-info-circle"></i> Pet Information</h3>
+                <div class="form-group">
+                    <label for="pet-name">Pet Name:</label>
+                    <input type="text" id="pet-name" placeholder="Enter your pet's name">
+                </div>
+                <div class="form-group">
+                    <label for="pet-type">Pet Type:</label>
+                    <select id="pet-type">
+                        <option value="">Select type</option>
+                        <option value="Dog">Dog</option>
+                        <option value="Cat">Cat</option>
+                        <option value="Bird">Bird</option>
+                        <option value="Fish">Fish</option>
+                        <option value="Rabbit">Rabbit</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pet-age">Age (years):</label>
+                    <input type="number" id="pet-age" placeholder="Age in years">
+                </div>
+                <div class="form-group">
+                    <label for="pet-breed">Breed:</label>
+                    <input type="text" id="pet-breed" placeholder="Breed or description">
+                </div>
+                <button class="btn btn-primary" onclick="savePetInfo()" style="margin-top: 15px;">
+                    <i class="fas fa-save"></i> Save Pet Info
+                </button>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-bed"></i> Sleep Tracking</h3>
+                <div class="form-group">
+                    <label for="sleep-date">Date:</label>
+                    <input type="date" id="sleep-date">
+                </div>
+                <div class="form-group">
+                    <label for="sleep-hours">Hours Slept:</label>
+                    <input type="number" id="sleep-hours" placeholder="Hours" min="0" max="24" step="0.5">
+                </div>
+                <button class="btn btn-accent" onclick="addSleepData()" style="margin-top: 15px;">
+                    <i class="fas fa-plus"></i> Add Sleep Data
+                </button>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-running"></i> Exercise Tracking</h3>
+                <div class="form-group">
+                    <label for="exercise-date">Date:</label>
+                    <input type="date" id="exercise-date">
+                </div>
+                <div class="form-group">
+                    <label for="exercise-minutes">Exercise Duration (minutes):</label>
+                    <input type="number" id="exercise-minutes" placeholder="Minutes" min="0" max="480">
+                </div>
+                <button class="btn btn-secondary" onclick="addExerciseData()" style="margin-top: 15px;">
+                    <i class="fas fa-plus"></i> Add Exercise Data
+                </button>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-share"></i> Share Pet Data with SoonPsy</h3>
+                <p>Get insights about how your pet's well-being affects your mental health.</p>
+                <button class="btn btn-primary" onclick="sharePetWithSoonPsy()" style="margin-top: 15px;">
+                    <i class="fas fa-share-alt"></i> Share Pet Data with SoonPsy
+                </button>
+            </div>
+        </div>
+
+        <!-- Rest Tracker Page -->
+        <div id="rest-page" class="page">
+            <div class="header">
+                <h1><i class="fas fa-moon"></i> Rest Tracker</h1>
+                <p>Monitor your sleep patterns for better mental health</p>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-plus-circle"></i> Add Rest Entry</h3>
+                <div class="form-group">
+                    <label for="rest-date">Date:</label>
+                    <input type="date" id="rest-date">
+                </div>
+                <div class="form-group">
+                    <label for="rest-minutes">Rest Duration (minutes):</label>
+                    <input type="number" id="rest-minutes" placeholder="Minutes" min="0" max="1440">
+                </div>
+                <div class="form-group">
+                    <label for="rest-quality">Quality (1-10):</label>
+                    <input type="range" id="rest-quality" min="1" max="10" value="5" oninput="updateQualityDisplay(this.value)">
+                    <div id="quality-display">Quality: 5/10</div>
+                </div>
+                <button class="btn btn-primary" onclick="addRestData()" style="margin-top: 15px;">
+                    <i class="fas fa-save"></i> Save Rest Data
+                </button>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-chart-line"></i> Rest Statistics</h3>
+                <div class="rest-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-rest">0</div>
+                        <div class="stat-label">Total Minutes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="avg-rest">0</div>
+                        <div class="stat-label">Average Minutes</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="entries-count">0</div>
+                        <div class="stat-label">Total Entries</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-share"></i> Share Rest Data with SoonPsy</h3>
+                <p>Get personalized insights about your sleep patterns and their impact on your mental well-being.</p>
+                <button class="btn btn-secondary" onclick="shareRestWithSoonPsy()" style="margin-top: 15px;">
+                    <i class="fas fa-share-alt"></i> Share Rest Data with SoonPsy
+                </button>
+            </div>
+        </div>
+
+        <!-- Piano Therapy Page -->
+        <div id="piano-page" class="page">
+            <div class="header">
+                <h1><i class="fas fa-music"></i> Piano Therapy</h1>
+                <p>Express your emotions through music</p>
+            </div>
+
+            <div class="piano-container">
+                <h3 style="text-align: center; color: white; margin-bottom: 20px;">
+                    <i class="fas fa-piano"></i> Interactive Piano
+                </h3>
+                <div class="piano">
+                    <div class="key" data-note="C" data-freq="261.63">C</div>
+                    <div class="key black" data-note="C#" data-freq="277.18">C#</div>
+                    <div class="key" data-note="D" data-freq="293.66">D</div>
+                    <div class="key black" data-note="D#" data-freq="311.13">D#</div>
+                    <div class="key" data-note="E" data-freq="329.63">E</div>
+                    <div class="key" data-note="F" data-freq="349.23">F</div>
+                    <div class="key black" data-note="F#" data-freq="369.99">F#</div>
+                    <div class="key" data-note="G" data-freq="392.00">G</div>
+                    <div class="key black" data-note="G#" data-freq="415.30">G#</div>
+                    <div class="key" data-note="A" data-freq="440.00">A</div>
+                    <div class="key black" data-note="A#" data-freq="466.16">A#</div>
+                    <div class="key" data-note="B" data-freq="493.88">B</div>
+                </div>
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="btn btn-accent" onclick="stopAllPianoSounds()">
+                        <i class="fas fa-stop"></i> Stop All Sounds
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-info-circle"></i> Piano Therapy Benefits</h3>
+                <ul style="margin-left: 20px; color: var(--text-light);">
+                    <li>Reduces stress and anxiety</li>
+                    <li>Improves emotional regulation</li>
+                    <li>Enhances mindfulness and focus</li>
+                    <li>Promotes relaxation and well-being</li>
+                    <li>Provides a creative outlet for emotions</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- AI Chat Page -->
+        <div id="ai-page" class="page">
+            <div class="header">
+                <h1><i class="fas fa-robot"></i> AI Psychologist</h1>
+                <p>Chat with SoonPsy for personalized mental health support</p>
+            </div>
+
+            <div class="card">
+                <div class="chat-container">
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message ai">
+                            <strong>SoonPsy:</strong> Hello! I'm here to support your mental wellness journey. How can I help you today?
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="ai-input" placeholder="Type your message here..." onkeypress="handleAiInput(event)">
+                        <button id="ai-send" onclick="sendAiMessage()">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-lightbulb"></i> How I Can Help</h3>
+                <p>I'm here to provide:</p>
+                <ul style="margin-left: 20px; margin-top: 10px; color: var(--text-light);">
+                    <li>Emotional support and validation</li>
+                    <li>Coping strategies for stress and anxiety</li>
+                    <li>Mindfulness and relaxation techniques</li>
+                    <li>Insights about your mood patterns</li>
+                    <li>Recommendations for mental wellness activities</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Journal Page -->
+        <div id="journal-page" class="page">
+            <div class="header">
+                <h1><i class="fas fa-book"></i> Personal Journal</h1>
+                <p>Express your thoughts and feelings safely</p>
+            </div>
+
+            <div class="journal-container">
+                <div class="form-group">
+                    <label for="journal-mood">Current Mood (optional):</label>
+                    <input type="text" id="journal-mood" placeholder="How are you feeling?">
+                </div>
+                <textarea class="journal-textarea" id="journal-text" placeholder="Write about your thoughts, feelings, experiences, or anything on your mind..."></textarea>
+                <div style="text-align: center; margin-top: 15px;">
+                    <button class="btn btn-primary" onclick="saveJournalEntry()">
+                        <i class="fas fa-save"></i> Save Entry
+                    </button>
+                    <button class="btn btn-secondary" onclick="shareJournalWithSoonPsy()">
+                        <i class="fas fa-share-alt"></i> Share with SoonPsy
+                    </button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3><i class="fas fa-history"></i> Journal Entries</h3>
+                <div id="journal-entries">
+                    <p style="text-align: center; color: var(--text-light);">No journal entries yet. Write your first entry above!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navigation">
+        <div class="nav-items">
+            <button class="nav-item active" data-target="home-page" onclick="navigateToPage('home-page')">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </button>
+            <button class="nav-item" data-target="mood-page" onclick="navigateToPage('mood-page')">
+                <i class="fas fa-smile"></i>
+                <span>Mood</span>
+            </button>
+            <button class="nav-item" data-target="pet-page" onclick="navigateToPage('pet-page')">
+                <i class="fas fa-paw"></i>
+                <span>Pet</span>
+            </button>
+            <button class="nav-item" data-target="rest-page" onclick="navigateToPage('rest-page')">
+                <i class="fas fa-moon"></i>
+                <span>Rest</span>
+            </button>
+            <button class="nav-item" data-target="piano-page" onclick="navigateToPage('piano-page')">
+                <i class="fas fa-music"></i>
+                <span>Piano</span>
+            </button>
+        </div>
+    </nav>
+
+    <script>
+        // Global variables
+        let currentMood = null;
+        let petData = {
+            name: '',
+            type: '',
+            age: '',
+            breed: '',
+            sleep: [],
+            exercise: []
+        };
+        let restData = [];
+        let journalEntries = [];
+        let moodHistory = [];
+
+        // API Configuration
+        const GEMINI_API_KEY = 'AIzaSyD-9tSrke72PouQMnMX-a7e1W0_72Gns3s'; // Replace with your actual API key
+        const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent';
+
+        // Navigation
+        function navigateToPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show target page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update navigation
+            document.querySelectorAll('.nav-item').forEach(nav => {
+                nav.classList.remove('active');
+            });
+            document.querySelector(`[data-target="${pageId}"]`).classList.add('active');
+        }
+
+        // Mood Tracking
+        function selectMood(element) {
+            // Remove previous selection
+            document.querySelectorAll('.mood-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add selection to clicked element
+            element.classList.add('selected');
+            currentMood = element.dataset.mood;
+            
+            // Save to history
+            const moodEntry = {
+                mood: currentMood,
+                date: new Date().toISOString()
+            };
+            moodHistory.push(moodEntry);
+            
+            // Update history display
+            updateMoodHistory();
+            
+            showTemporaryMessage(`Mood selected: ${currentMood}`);
+        }
+
+        function updateMoodHistory() {
+            const historyContainer = document.getElementById('mood-history');
+            if (moodHistory.length === 0) {
+                historyContainer.innerHTML = '<p style="text-align: center; color: var(--text-light);">No mood entries yet. Select a mood above to get started!</p>';
+                return;
+            }
+            
+            let html = '';
+            moodHistory.slice(-5).reverse().forEach(entry => {
+                const date = new Date(entry.date).toLocaleDateString();
+                html += `
+                    <div style="padding: 10px; margin: 5px 0; background: #F8FAFC; border-radius: 8px; border-left: 4px solid var(--primary-color);">
+                        <strong>${entry.mood}</strong> - ${date}
+                    </div>
+                `;
+            });
+            historyContainer.innerHTML = html;
+        }
+
+        // Pet Care
+        function savePetInfo() {
+            petData.name = document.getElementById('pet-name').value;
+            petData.type = document.getElementById('pet-type').value;
+            petData.age = document.getElementById('pet-age').value;
+            petData.breed = document.getElementById('pet-breed').value;
+            
+            showTemporaryMessage('Pet information saved successfully!');
+        }
+
+        function addSleepData() {
+            const date = document.getElementById('sleep-date').value;
+            const hours = parseFloat(document.getElementById('sleep-hours').value);
+            
+            if (!date || isNaN(hours)) {
+                showTemporaryMessage('Please fill in both date and hours.');
+                return;
+            }
+            
+            petData.sleep.push({
+                date: date,
+                hours: hours
+            });
+            
+            showTemporaryMessage('Sleep data added successfully!');
+            document.getElementById('sleep-date').value = '';
+            document.getElementById('sleep-hours').value = '';
+        }
+
+        function addExerciseData() {
+            const date = document.getElementById('exercise-date').value;
+            const minutes = parseInt(document.getElementById('exercise-minutes').value);
+            
+            if (!date || isNaN(minutes)) {
+                showTemporaryMessage('Please fill in both date and minutes.');
+                return;
+            }
+            
+            petData.exercise.push({
+                date: date,
+                minutes: minutes
+            });
+            
+            showTemporaryMessage('Exercise data added successfully!');
+            document.getElementById('exercise-date').value = '';
+            document.getElementById('exercise-minutes').value = '';
+        }
+
+        // Rest Tracker
+        function updateQualityDisplay(value) {
+            document.getElementById('quality-display').textContent = `Quality: ${value}/10`;
+        }
+
+        function addRestData() {
+            const date = document.getElementById('rest-date').value;
+            const minutes = parseInt(document.getElementById('rest-minutes').value);
+            const quality = parseInt(document.getElementById('rest-quality').value);
+            
+            if (!date || isNaN(minutes)) {
+                showTemporaryMessage('Please fill in both date and minutes.');
+                return;
+            }
+            
+            restData.push({
+                date: date,
+                minutes: minutes,
+                quality: quality
+            });
+            
+            updateRestStatistics();
+            showTemporaryMessage('Rest data added successfully!');
+            
+            // Clear form
+            document.getElementById('rest-date').value = '';
+            document.getElementById('rest-minutes').value = '';
+            document.getElementById('rest-quality').value = '5';
+            updateQualityDisplay('5');
+        }
+
+        function updateRestStatistics() {
+            const totalMinutes = restData.reduce((sum, entry) => sum + entry.minutes, 0);
+            const averageMinutes = restData.length > 0 ? Math.round(totalMinutes / restData.length) : 0;
+            
+            document.getElementById('total-rest').textContent = totalMinutes;
+            document.getElementById('avg-rest').textContent = averageMinutes;
+            document.getElementById('entries-count').textContent = restData.length;
+        }
+
+        // Piano - Web Audio API Implementation
+        let audioContext = null;
+        let activeOscillators = {};
+
+        function initAudioContext() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+
+        function playPianoNote(frequency, duration = 0.5) {
+            initAudioContext();
+            
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+            
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+            
+            oscillator.frequency.value = frequency;
+            oscillator.type = 'sine';
+            
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+            
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration);
+            
+            return oscillator;
+        }
+
+        function setupPiano() {
+            const pianoKeys = document.querySelectorAll('.key');
+            
+            pianoKeys.forEach(key => {
+                const handleStart = function() {
+                    this.classList.add('active');
+                    const freq = parseFloat(this.dataset.freq);
+                    const note = this.dataset.note;
+                    activeOscillators[note] = playPianoNote(freq);
+                };
+                
+                const handleEnd = function() {
+                    this.classList.remove('active');
+                };
+                
+                // Mouse events
+                key.addEventListener('mousedown', handleStart);
+                key.addEventListener('mouseup', handleEnd);
+                key.addEventListener('mouseleave', handleEnd);
+                
+                // Touch events for mobile
+                key.addEventListener('touchstart', (e) => {
+                    e.preventDefault();
+                    handleStart.call(key);
+                });
+                key.addEventListener('touchend', (e) => {
+                    e.preventDefault();
+                    handleEnd.call(key);
+                });
+            });
+        }
+
+        function stopAllPianoSounds() {
+            if (audioContext) {
+                audioContext.close().then(() => {
+                    audioContext = null;
+                    activeOscillators = {};
+                    // Remove active class from all keys
+                    document.querySelectorAll('.key').forEach(key => {
+                        key.classList.remove('active');
+                    });
+                });
+            }
+        }
+
+        // AI Chat Functions
+        function handleAiInput(event) {
+            if (event.key === 'Enter') {
+                sendAiMessage();
+            }
+        }
+
+        function sendAiMessage() {
+            const input = document.getElementById('ai-input');
+            const message = input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message to chat
+            addChatMessage(message, 'user');
+            input.value = '';
+            
+            // Show typing indicator
+            showTypingIndicator();
+            
+            // Send to AI
+            sendToAI(message);
+        }
+
+        function addChatMessage(message, sender) {
+            const chatMessages = document.getElementById('chat-messages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}`;
+            
+            if (sender === 'user') {
+                messageDiv.innerHTML = `<strong>You:</strong> ${message}`;
+            } else {
+                messageDiv.innerHTML = `<strong>SoonPsy:</strong> ${message}`;
+            }
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        async function sendToAI(message) {
+            try {
+                const response = await fetch(GEMINI_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-goog-api-key': GEMINI_API_KEY
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: `You are SoonPsy, a compassionate AI psychologist. Respond to this user message with empathy, support, and helpful insights. User message: ${message}`
+                            }]
+                        }],
+                        generationConfig: {
+                            temperature: 0.7,
+                            topK: 40,
+                            topP: 0.95,
+                            maxOutputTokens: 1024
+                        }
+                    })
+                });
+                
+                hideTypingIndicator();
+                
+                if (!response.ok) {
+                    throw new Error(`API request failed: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                const aiResponse = data.candidates[0].content.parts[0].text;
+                
+                addChatMessage(aiResponse, 'ai');
+            } catch (error) {
+                hideTypingIndicator();
+                console.error('AI Error:', error);
+                addChatMessage('I apologize, but I\'m having trouble responding right now. Please try again in a moment.', 'ai');
+            }
+        }
+
+        function showTypingIndicator() {
+            const chatMessages = document.getElementById('chat-messages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message ai';
+            typingDiv.id = 'typing-indicator';
+            typingDiv.innerHTML = '<strong>SoonPsy:</strong> <span class="loading"></span> Thinking...';
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        // Share Functions - Fixed with async/await
+        async function shareMoodWithSoonPsy() {
+            if (!currentMood) {
+                showTemporaryMessage("Please select a mood first.");
+                return;
+            }
+            
+            showTypingIndicator();
+            addChatMessage(`My current mood is: ${currentMood}`, 'user');
+            
+            try {
+                const context = `User's current mood: ${currentMood}. Provide psychological insights and supportive guidance.`;
+                const response = await sendToSoonPsy(context);
+                hideTypingIndicator();
+                addChatMessage(response, 'ai');
+                
+                // Switch to AI page to see the response
+                navigateToPage('ai-page');
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                document.querySelector('[data-target="ai-page"]').classList.add('active');
+            } catch (error) {
+                hideTypingIndicator();
+                addChatMessage("I'm having trouble processing your mood right now. Please try again.", 'ai');
+            }
+        }
+
+        async function shareRestWithSoonPsy() {
+            const today = new Date().toDateString();
+            const todayRestData = restData.filter(entry => new Date(entry.date).toDateString() === today);
+            const totalRest = todayRestData.reduce((sum, entry) => sum + entry.minutes, 0);
+            
+            showTypingIndicator();
+            addChatMessage(`My rest data: ${totalRest} minutes today`, 'user');
+            
+            try {
+                const context = `User's rest data for today: ${totalRest} minutes. Historical data: ${restData.length} entries. Analyze rest patterns in relation to psychological well-being and provide insights.`;
+                const response = await sendToSoonPsy(context);
+                hideTypingIndicator();
+                addChatMessage(response, 'ai');
+                
+                // Switch to AI page to see the response
+                navigateToPage('ai-page');
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                document.querySelector('[data-target="ai-page"]').classList.add('active');
+            } catch (error) {
+                hideTypingIndicator();
+                addChatMessage("I'm having trouble analyzing your rest data. Please try again.", 'ai');
+            }
+        }
+
+        async function sharePetWithSoonPsy() {
+            if (!petData.name) {
+                showTemporaryMessage("Please add your pet details first.");
+                return;
+            }
+            
+            showTypingIndicator();
+            addChatMessage(`My pet data: ${petData.name} (${petData.type})`, 'user');
+            
+            try {
+                const recentSleep = petData.sleep.slice(-7).map(e => `${new Date(e.date).toLocaleDateString()}: ${e.hours}h`).join('; ');
+                const recentExercise = petData.exercise.slice(-7).map(e => `${new Date(e.date).toLocaleDateString()}: ${e.minutes}m`).join('; ');
+                
+                const context = `Pet information: Name: ${petData.name}, Type: ${petData.type}, Age: ${petData.age || 'not specified'}, Breed: ${petData.breed || 'not specified'}. Recent sleep data: ${recentSleep || 'none'}. Recent exercise: ${recentExercise || 'none'}. Provide insights on the psychological correlations between pet well-being and the owner's mental health.`;
+                
+                const response = await sendToSoonPsy(context);
+                hideTypingIndicator();
+                addChatMessage(response, 'ai');
+                
+                // Switch to AI page to see the response
+                navigateToPage('ai-page');
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                document.querySelector('[data-target="ai-page"]').classList.add('active');
+            } catch (error) {
+                hideTypingIndicator();
+                addChatMessage("I'm having trouble analyzing your pet data. Please try again.", 'ai');
+            }
+        }
+
+        async function shareJournalWithSoonPsy() {
+            const content = document.getElementById('journal-text').value.trim();
+            const mood = document.getElementById('journal-mood').value.trim();
+            
+            if (!content) {
+                showTemporaryMessage("Please write a journal entry first.");
+                return;
+            }
+            
+            showTypingIndicator();
+            addChatMessage(`My journal entry: "${content.substring(0, 100)}..."`, 'user');
+            
+            try {
+                const context = `User shared journal entry: "${content}". Mood: ${mood || 'Not specified'}. Analyze themes, emotions, and patterns from a psychological perspective and provide supportive insights.`;
+                const response = await sendToSoonPsy(context);
+                hideTypingIndicator();
+                addChatMessage(response, 'ai');
+                
+                // Switch to AI page to see the response
+                navigateToPage('ai-page');
+                document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                document.querySelector('[data-target="ai-page"]').classList.add('active');
+            } catch (error) {
+                hideTypingIndicator();
+                addChatMessage("I'm having trouble analyzing your journal. Please try again.", 'ai');
+            }
+        }
+
+        async function sendToSoonPsy(context) {
+            try {
+                const response = await fetch(GEMINI_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'x-goog-api-key': GEMINI_API_KEY
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: `You are SoonPsy, a compassionate AI psychologist. ${context}. Respond with empathy, insights, and helpful guidance.`
+                            }]
+                        }],
+                        generationConfig: {
+                            temperature: 0.7,
+                            topK: 40,
+                            topP: 0.95,
+                            maxOutputTokens: 1024
+                        }
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`API request failed: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                return data.candidates[0].content.parts[0].text;
+            } catch (error) {
+                console.error('SoonPsy Error:', error);
+                throw error;
+            }
+        }
+
+        // Journal Functions
+        function saveJournalEntry() {
+            const content = document.getElementById('journal-text').value.trim();
+            const mood = document.getElementById('journal-mood').value.trim();
+            
+            if (!content) {
+                showTemporaryMessage("Please write something in your journal.");
+                return;
+            }
+            
+            const entry = {
+                content: content,
+                mood: mood,
+                date: new Date().toISOString()
+            };
+            
+            journalEntries.push(entry);
+            updateJournalEntries();
+            
+            // Clear form
+            document.getElementById('journal-text').value = '';
+            document.getElementById('journal-mood').value = '';
+            
+            showTemporaryMessage('Journal entry saved successfully!');
+        }
+
+        function updateJournalEntries() {
+            const entriesContainer = document.getElementById('journal-entries');
+            if (journalEntries.length === 0) {
+                entriesContainer.innerHTML = '<p style="text-align: center; color: var(--text-light);">No journal entries yet. Write your first entry above!</p>';
+                return;
+            }
+            
+            let html = '';
+            journalEntries.slice(-5).reverse().forEach(entry => {
+                const date = new Date(entry.date).toLocaleDateString();
+                html += `
+                    <div style="padding: 15px; margin: 10px 0; background: #F8FAFC; border-radius: 8px; border-left: 4px solid var(--primary-color);">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                            <small style="color: var(--text-light);">${date}</small>
+                            ${entry.mood ? `<small style="color: var(--primary-color); font-weight: 600;">${entry.mood}</small>` : ''}
+                        </div>
+                        <p style="margin: 0; color: var(--text-dark);">${entry.content.substring(0, 150)}${entry.content.length > 150 ? '...' : ''}</p>
+                    </div>
+                `;
+            });
+            entriesContainer.innerHTML = html;
+        }
+
+        // Utility Functions
+        function showTemporaryMessage(message) {
+            // Create temporary message element
+            const messageDiv = document.createElement('div');
+            messageDiv.style.cssText = `
+                position: fixed;
+                top: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: var(--primary-color);
+                color: white;
+                padding: 12px 24px;
+                border-radius: 25px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                z-index: 10000;
+                font-weight: 600;
+                animation: slideIn 0.3s ease-out;
+            `;
+            messageDiv.textContent = message;
+            
+            document.body.appendChild(messageDiv);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                messageDiv.style.animation = 'slideOut 0.3s ease-in';
+                setTimeout(() => {
+                    if (messageDiv.parentNode) {
+                        messageDiv.parentNode.removeChild(messageDiv);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current date for forms
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('rest-date').value = today;
+            document.getElementById('sleep-date').value = today;
+            document.getElementById('exercise-date').value = today;
+            
+            // Setup piano
+            setupPiano();
+            
+            // Initialize rest statistics
+            updateRestStatistics();
+            
+            console.log('Soon Mental Wellness Platform v1.5 loaded successfully!');
+        });
+
+        // Add CSS animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(-50%) translateY(-100%); opacity: 0; }
+                to { transform: translateX(-50%) translateY(0); opacity: 1; }
+            }
+            @keyframes slideOut {
+                from { transform: translateX(-50%) translateY(0); opacity: 1; }
+                to { transform: translateX(-50%) translateY(-100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('✅ Service Worker registered:', reg.scope))
+                    .catch(err => console.log('❌ Service Worker registration failed:', err));
+            });
+        }
+
+        // PWA Install Prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            // Show install button/prompt to user
+            showTemporaryMessage('📱 Install Soon as an app for better experience!');
+        });
+    </script>
+</body>
+</html>
